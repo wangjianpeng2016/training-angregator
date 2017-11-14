@@ -1,14 +1,16 @@
 ## training-angregator
 
-### How to start
-#### 导入项目
+## 阅读须知
+1. 前端代码 [training-view](https://github.com/wangjianpeng2016/training-view)
+## How to start
+### 导入项目
 [参考](http://blog.csdn.net/w12345_ww/article/details/52094756)
 
-#### 运行项目
+### 运行项目
 ```
 1. 配置tomcat
 ```
-#### 测试访问
+### 测试访问
 > 访问到默认的初始页面
 ```
 http://ip:port/project/testController/index
