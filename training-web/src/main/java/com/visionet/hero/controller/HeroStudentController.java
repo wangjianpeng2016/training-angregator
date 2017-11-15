@@ -1,7 +1,10 @@
 package com.visionet.hero.controller;
 
+import com.visionet.hero.entity.HeroStudent;
+import com.visionet.hero.service.HeroStudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HeroStudentController {
 
     private Logger logger = LoggerFactory.getLogger(HeroStudentController.class);
+
+    @Autowired
+    private HeroStudentService heroStudentService;
+
+    /**
+     * @Description 添加一名学生
+     * @author wangjp
+     * @Date: 2017-11-15 11:34
+     */
+    @ResponseBody
+    @RequestMapping(value="/saveStudent", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
+    public void saveStudent(HeroStudent heroStudent){
+
+        logger.debug("执行保存操作...");
+
+        heroStudentService.saveStudent(heroStudent);
+    }
 
     /**
      * @Description 查询全部的用户信息

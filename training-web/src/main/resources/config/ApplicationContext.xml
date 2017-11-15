@@ -58,14 +58,14 @@
 	<!-- 配置sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="typeAliasesPackage" value="com.test.mybatis.entity"/>
+		<property name="typeAliasesPackage" value="com.visionet.hero.entity"/>
 		<property name="mapperLocations" value="classpath:mappers/*.xml"></property>
 		<property name="configLocation" value="classpath:config/config-mybatis/mybatis-config.xml"></property>
 	</bean>
 
 	<!-- 通用Mapper -->
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.test.mybatis.mapper"/>
+		<property name="basePackage" value="com.visionet.hero.mapper"/>
 		<property name="properties">
 			<value>
 				mappers=tk.mybatis.mapper.common.Mapper
