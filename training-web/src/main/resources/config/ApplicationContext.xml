@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
 	<!-- 自动扫描包 -->
@@ -80,6 +81,25 @@
 
 	<!-- 使用注解声明事务  -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+	<!-- AOP配置事物 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="search*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="query*" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="check*" read-only="true" propagation="SUPPORTS" />
+
+			<tx:method name="*" read-only="false" propagation="REQUIRED" timeout="300" rollback-for="java.lang.Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置AOP切面 -->
+	<aop:config>
+		<aop:pointcut id="txPointcut" expression="bean(*Service)" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
 </beans>
 
 
