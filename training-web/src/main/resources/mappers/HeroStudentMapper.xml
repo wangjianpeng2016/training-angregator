@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.visionet.hero.mapper.HeroStudentMapper">
 
-
     <resultMap id="queryStudentAndRolesMap" type="HeroStudent">
-        <id column="id_" property="id" jdbcType="INTEGER" />
-        <result column="name_" property="name" jdbcType="VARCHAR" />
-        <association property="roles" column="profile_id" javaType="HeroRole">
+        <id column="id_" property="user_id" jdbcType="INTEGER" />
+        <result column="name_" property="user_name" jdbcType="VARCHAR" />
+
+        <collection property="roles" column="role_id" ofType="HeroRole">
             <id property="id" column="role_id" jdbcType="INTEGER"/>
-            <result property="name" column="name_" jdbcType="VARCHAR"/>
-        </association>
+            <result property="name" column="role_name" jdbcType="VARCHAR"/>
+        </collection>
 
     </resultMap>
 
