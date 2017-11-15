@@ -2,6 +2,8 @@ package com.visionet.hero.controller;
 
 import com.visionet.hero.entity.HeroStudent;
 import com.visionet.hero.service.HeroStudentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
  * @Date: 2017-11-15 11:24
  */
 @Controller
+@Api(description = "heroStudentController")
 @RequestMapping("/heroStudentController")
 public class HeroStudentController {
 
@@ -34,6 +38,7 @@ public class HeroStudentController {
      * @Date: 2017-11-15 11:34
      */
     @ResponseBody
+    @ApiOperation(value="保存学生信息", httpMethod="POST", produces= MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value="/saveStudent", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
     public void saveStudent(@RequestBody HeroStudent heroStudent){
 
@@ -48,6 +53,7 @@ public class HeroStudentController {
      * @Date: 2017-11-15 11:24
      */
     @ResponseBody
+    @ApiOperation(value="查询全部学生信息", httpMethod="POST", produces= MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value="/queryStudentAll", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
     public void queryStudentAll(){
 
@@ -61,6 +67,7 @@ public class HeroStudentController {
      * @Date: 2017-11-15 13:08
      */
     @ResponseBody
+    @ApiOperation(value="查询学生和角色信息", httpMethod="POST", produces= MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value="/queryStudentAndRoles", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<HeroStudent>> queryStudentAndRoles(@RequestBody HeroStudent student){
 
@@ -80,6 +87,7 @@ public class HeroStudentController {
      * @author wangjp
      * @Date: 2017-11-15 11:32
      */
+    @ApiIgnore
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(){
 
