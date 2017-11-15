@@ -29,4 +29,15 @@ public class HeroStudentController {
     public void queryStudentAll(){
 
     }
+
+    /**
+     * @Description 跳转页面
+     * @author wangjp
+     * @Date: 2017-11-15 11:32
+     */
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index(){
+
+        return "hero/index";
+    }
 }
