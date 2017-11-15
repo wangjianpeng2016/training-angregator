@@ -5,11 +5,13 @@ import com.visionet.hero.service.HeroStudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Description 学生控制器
@@ -32,7 +34,7 @@ public class HeroStudentController {
      */
     @ResponseBody
     @RequestMapping(value="/saveStudent", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
-    public void saveStudent(HeroStudent heroStudent){
+    public void saveStudent(@RequestBody HeroStudent heroStudent){
 
         logger.debug("执行保存操作...");
 
@@ -48,6 +50,22 @@ public class HeroStudentController {
     @RequestMapping(value="/queryStudentAll", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
     public void queryStudentAll(){
 
+        logger.debug("执行查询全部....");
+        heroStudentService.queryStudentAll();
+    }
+
+    /**
+     * @Description 查询学生Id小于某值的数据
+     * @author wangjp
+     * @Date: 2017-11-15 13:08
+     */
+    @ResponseBody
+    @RequestMapping(value="/queryStudentAndRoles/{id}", method = RequestMethod.POST, produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HeroStudent>> queryStudentAndRoles(@PathVariable Integer studentId){
+
+        List<HeroStudent> studentList = heroStudentService.queryStudentAndRoles(studentId);
+
+        return new ResponseEntity<List<HeroStudent>>(studentList, HttpStatus.OK);
     }
 
     /**

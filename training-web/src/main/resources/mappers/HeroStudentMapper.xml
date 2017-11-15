@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.visionet.hero.mapper.HeroStudentMapper">
+
+
+    <resultMap id="queryStudentAndRolesMap" type="HeroStudent">
+        <id column="id_" property="id" jdbcType="INTEGER" />
+        <result column="name_" property="name" jdbcType="VARCHAR" />
+        <association property="roles" column="profile_id" javaType="HeroRole">
+            <id property="id" column="role_id" jdbcType="INTEGER"/>
+            <result property="name" column="name_" jdbcType="VARCHAR"/>
+        </association>
+
+    </resultMap>
+
+
+</mapper>
