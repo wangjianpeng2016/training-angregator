@@ -2,7 +2,7 @@ package com.visionet.hero.provider;
 
 public class HeroStudentProvider {
 
-    private String queryStudentAndRoles(){
+    public String queryStudentAndRoles(){
 
         StringBuilder sql = new StringBuilder(" SELECT * ");
         sql.append(" FROM hero_student_role sr ")
